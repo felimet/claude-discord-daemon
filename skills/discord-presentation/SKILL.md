@@ -1,6 +1,6 @@
 ---
 name: discord-presentation
-description: Formatting and rich-output guide for replies relayed to Discord DM by the claude-discord-daemon bridge. Use for EVERY reply in this workspace — covers the Discord markdown subset (no tables!), embed cards, file attachments, choice buttons, and message limits.
+description: Formatting and rich-output guide for replies relayed to Discord DM by the claude-discord-daemon bridge. Use for EVERY reply in this workspace - covers the Discord markdown subset (no tables!), embed cards, file attachments, choice buttons, and message limits.
 ---
 
 # Discord presentation guide (for bridge replies)
@@ -13,8 +13,8 @@ Available: `**bold**`, `*italic*`, `__underline__`, `~~strikethrough~~`, `` `inl
 
 **Markdown tables are NOT supported** (`| a | b |` renders literally as ugly text). For tabular content use instead:
 
-1. An embed's `fields` (one field per column, `inline: true` for three side-by-side columns) — preferred.
-2. An aligned code block (monospace font) — for data-dense content.
+1. An embed's `fields` (one field per column, `inline: true` for three side-by-side columns) - preferred.
+2. An aligned code block (monospace font) - for data-dense content.
 
 Masked links `[text](url)` work only inside embeds; in a normal message just paste a bare URL and it auto-links.
 
@@ -26,7 +26,7 @@ Masked links `[text](url)` work only inside embeds; in a normal message just pas
 [[embed: {"title":"標題","description":"內文支援 markdown 與 \n 換行","color":5793266,"fields":[{"name":"欄名","value":"值","inline":true}],"footer":"註腳"}]]
 ```
 
-Fields: `title` (≤256), `description` (≤4096, may contain a masked link), `color` (a number or `"#5865F2"`), `fields` (≤25, name ≤256 / value ≤1024, each may be `inline`), `footer` (≤2048), `url`, `image`, `thumbnail`. Up to 10 cards per message. The JSON must be single-line — use `\n` for line breaks; if the JSON is invalid, that line is preserved verbatim as text (handy for debugging).
+Fields: `title` (≤256), `description` (≤4096, may contain a masked link), `color` (a number or `"#5865F2"`), `fields` (≤25, name ≤256 / value ≤1024, each may be `inline`), `footer` (≤2048), `url`, `image`, `thumbnail`. Up to 10 cards per message. The JSON must be single-line, use `\n` for line breaks; if the JSON is invalid, that line is preserved verbatim as text (handy for debugging).
 
 Color conventions: info blue `5793266` (0x5865F2), success green `5763719` (0x57F287), warning yellow `16705372` (0xFEE75C), error red `15548997` (0xED4245).
 
@@ -34,11 +34,11 @@ When to use (use it where it fits, don't force it): structured summaries, status
 
 ### File attachment: `[[file: /absolute/path]]`
 
-Use this directive to attach charts, reports, code files, and other artifacts you produce (≤25MB, ≤10 files; the bridge verifies existence and size, skipping missing / oversized files). You don't need to write a file yourself for a long text report — the bridge's 4000-character mechanism handles that.
+Use this directive to attach charts, reports, code files, and other artifacts you produce (≤25MB, ≤10 files; the bridge verifies existence and size, skipping missing / oversized files). You don't need to write a file yourself for a long text report, the bridge's 4000-character mechanism handles that.
 
 ### Choice buttons: `[[buttons: option one | option two]]` (last line of the reply)
 
-Use when the user needs to make a choice, in place of a numbered menu. 2–5 options, each ≤80 characters. The clicked option's text becomes the user's next message back into the same session. The user may also ignore the buttons and just type. The first option renders as a blue primary button.
+Use when the user needs to make a choice, in place of a numbered menu. 2-5 options, each ≤80 characters. The clicked option's text becomes the user's next message back into the same session. The user may also ignore the buttons and just type. The first option renders as a blue primary button.
 
 ## Permissions
 

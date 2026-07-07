@@ -3,7 +3,7 @@ description: Control the 24/7 Discord ⇄ Claude Code daemon (up / down / status
 argument-hint: "[up|down|status|logs]"
 ---
 
-# /discord — claude-discord-daemon control
+# /discord - claude-discord-daemon control
 
 Run the `claude-discord-daemon` CLI to manage the always-on Discord bridge.
 The user's requested action is `$ARGUMENTS` (default to `status` if empty).
@@ -20,11 +20,11 @@ binary, falling back to `bunx` if `cdd` is not on PATH:
 
 What each does:
 
-- **up** — registers the `ClaudeDiscordBridge` logon task (if missing) and starts
+- **up** - registers the `ClaudeDiscordBridge` logon task (if missing) and starts
   the bridge detached (survives terminal close, crashes, and reboots).
-- **down** — stops the supervisor and the engine process.
-- **status** — shows the logon task state, supervisor/engine PIDs, and a log tail.
-- **logs** — prints the last 40 lines of `bot.log`.
+- **down** - stops the supervisor and the engine process.
+- **status** - shows the logon task state, supervisor/engine PIDs, and a log tail.
+- **logs** - prints the last 40 lines of `bot.log`.
 
 Prerequisites (state the first missing one instead of failing silently): Windows,
 Bun on PATH, a logged-in Claude Code CLI, `DISCORD_BOT_TOKEN` in

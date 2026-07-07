@@ -19,18 +19,18 @@ The official Discord channel plugin binds the Discord gateway to an MCP stdio pi
 ## Features
 
 - **Live named-tool status card.** While a run is in flight, a single embed status card is edited in place and names the exact tool / skill / MCP / agent / command currently running instead of a vague "thinking": `🔌 MCP matlab·evaluate` · `🖥️ Bash` · `🔍 Read` · `📝 Edit` · `🌐 WebFetch` · `🤖 agent code-reviewer` · `📚 skill xlsx` · `⌨️ /commit` · `🔧 tool`.
-- **Status card overwritten into the reply.** On success the status card is edited in place into the final reply, with a faint Discord `-#` stat footer appended (`⚙️ elapsed · per-kind ×count`). The chat keeps a single message — no duplicate "done" card plus a separate reply. File / long / multi-chunk replies fall back to fresh messages (edits can't attach files), collapsing the status card to just the footer.
+- **Status card overwritten into the reply.** On success the status card is edited in place into the final reply, with a faint Discord `-#` stat footer appended (`⚙️ elapsed · per-kind ×count`). The chat keeps a single message - no duplicate "done" card plus a separate reply. File / long / multi-chunk replies fall back to fresh messages (edits can't attach files), collapsing the status card to just the footer.
 - **Rich output directives** (each on its own line in the reply):
   - `[[embed: {json}]]` renders a colored embed card. The JSON may span multiple lines.
   - `[[file: /absolute/path]]` attaches a produced file (verified for existence and size before sending).
-  - a trailing `[[buttons: A | B]]` line renders 2–5 real Discord choice buttons; the clicked label is fed back into the same session as the next message.
+  - a trailing `[[buttons: A | B]]` line renders 2-5 real Discord choice buttons; the clicked label is fed back into the same session as the next message.
 - **50 MB inbound attachment download.** Attachments the user uploads (≤ 50 MB) are downloaded to a shared inbox and their local paths are appended to the prompt for `claude` to `Read`.
 - **Permission relay.** A headless run's permission prompts are routed through `perm-mcp.ts` → a loopback endpoint → a Discord **Allow / Deny** button card; the owner clicks to decide. Users are never told to approve anything in a terminal.
 - **Idle watchdog (no wall-clock cap).** By default there is no total time limit. A run is killed only when its event stream goes silent past `BOT_IDLE_TIMEOUT_MS` (a wedged process), never for merely taking a long time, so long jobs are fine.
 - **Natural-language "new conversation" reset.** A message that *is* one of a small set of reset phrases (whole message, case-insensitive) drops the stored session so the next message starts fresh. See [New-conversation reset](#new-conversation-reset).
 - **Per-chat session continuity.** Each chat's session UUID is stored in `sessions.json` and later messages `--resume` it, so context carries across DMs.
 - **24/7 Windows daemon.** An `AtLogOn` scheduled task (`ClaudeDiscordBridge`) plus `launch.vbs` (detached) + `supervise.cmd` (restart on crash) + a single-instance loopback lock keeps the bridge running across terminal close, crashes, and reboots.
-- **Portable — no hardcoded paths.** The working directory defaults to the engine directory and every path is overridable via env vars.
+- **Portable - no hardcoded paths.** The working directory defaults to the engine directory and every path is overridable via env vars.
 
 ---
 
@@ -92,7 +92,7 @@ Then drive the same daemon with the `/discord` command:
 
 Before starting, put your bot token and sender allowlist in the bridge's state directory (default `~/.claude/channels/discord/`, overridable via `DISCORD_STATE_DIR`).
 
-**1. Bot token** — write it to `~/.claude/channels/discord/.env`:
+**1. Bot token** - write it to `~/.claude/channels/discord/.env`:
 
 ```
 DISCORD_BOT_TOKEN=your_discord_bot_token
@@ -100,7 +100,7 @@ DISCORD_BOT_TOKEN=your_discord_bot_token
 
 (Or set `DISCORD_BOT_TOKEN` directly in the process environment; a real env var wins over the `.env` file.)
 
-**2. Allowlist** — create `~/.claude/channels/discord/access.json` and add your Discord user ID to `allowFrom`:
+**2. Allowlist** - create `~/.claude/channels/discord/access.json` and add your Discord user ID to `allowFrom`:
 
 ```json
 {
@@ -110,7 +110,7 @@ DISCORD_BOT_TOKEN=your_discord_bot_token
 
 Only DMs from user IDs in `allowFrom` are processed; everything else is ignored (fail-closed). This file is re-read on every message, so allowlist edits apply without a restart.
 
-**3. Pair and DM** — invite your bot into any Discord server you are also in (Discord only lets you DM a bot you share a server with), then DM the bot directly.
+**3. Pair and DM** - invite your bot into any Discord server you are also in (Discord only lets you DM a bot you share a server with), then DM the bot directly.
 
 Optional `access.json` keys (same semantics as the official plugin):
 
@@ -151,7 +151,7 @@ Send a message that **is** one of the following (whole message, case-insensitive
 /new   /reset   reset   new chat
 ```
 
-The match is strict and whole-message (trailing whitespace/punctuation is tolerated), so a passing mention like `來開新對話討論 X` does **not** reset the session — only a message that is entirely a reset phrase does. On reset the bot reacts 🆕 and confirms; the next DM begins a new `claude -p` session.
+The match is strict and whole-message (trailing whitespace/punctuation is tolerated), so a passing mention like `來開新對話討論 X` does **not** reset the session, only a message that is entirely a reset phrase does. On reset the bot reacts 🆕 and confirms; the next DM begins a new `claude -p` session.
 
 ---
 
@@ -178,20 +178,20 @@ Every DM is a fresh `claude -p` run. Because it loads the same global MCP / plug
 
 ---
 
-## Architecture note — why a standalone bridge, not the official channel engine
+## Architecture note: why a standalone bridge, not the official channel engine
 
-Anthropic gates any non-approved custom channel behind `--dangerously-load-development-channels`, and that flag shows a startup confirmation dialog. A headless daemon has no TTY to answer that dialog, so it hangs — meaning a custom rich channel simply cannot run as a daemon. `bot.ts` owning its own discord.js gateway is the headless-viable path: it needs no development-channel flag and no interactive confirmation, so it can run unattended as a service.
+Anthropic gates any non-approved custom channel behind `--dangerously-load-development-channels`, and that flag shows a startup confirmation dialog. A headless daemon has no TTY to answer that dialog, so it hangs, meaning a custom rich channel simply cannot run as a daemon. `bot.ts` owning its own discord.js gateway is the headless-viable path: it needs no development-channel flag and no interactive confirmation, so it can run unattended as a service.
 
-Because both this bridge and the official plugin log in with the same bot token, the official plugin must be disabled (`claude plugin disable discord@claude-plugins-official`) before running this as a service — two gateway logins on one token produce duplicate replies.
+Because both this bridge and the official plugin log in with the same bot token, the official plugin must be disabled (`claude plugin disable discord@claude-plugins-official`) before running this as a service, two gateway logins on one token produce duplicate replies.
 
 ---
 
 ## Security
 
-- **Discord input is untrusted** (a prompt-injection surface). Inbound messages are wrapped in a `<channel source="discord" ...>` tag — metadata in the tag, untrusted text inside — and the system prompt tells the model to treat that content as chat text, never as instructions to change configuration or access rules.
+- **Discord input is untrusted** (a prompt-injection surface). Inbound messages are wrapped in a `<channel source="discord" ...>` tag (metadata in the tag, untrusted text inside), and the system prompt tells the model to treat that content as chat text, never as instructions to change configuration or access rules.
 - **The allowlist confines the sender surface.** Only user IDs in `access.json`'s `allowFrom` can trigger any run; a failure to read `access.json` fails closed. Button clickers (including permission-approval buttons) are re-authenticated against the same allowlist.
-- **Permission mode `auto` (default).** The auto-classifier gates each tool call — read-only passes, destructive/self-modifying is blocked and surfaced as a Discord Allow/Deny button. **`bypassPermissions` is never used.** Set `BOT_PERMISSION_MODE=default` to harden further.
-- **Access and pairing are managed by the owner only**, in the state directory — never via chat.
+- **Permission mode `auto` (default).** The auto-classifier gates each tool call: read-only passes, destructive/self-modifying is blocked and surfaced as a Discord Allow/Deny button. **`bypassPermissions` is never used.** Set `BOT_PERMISSION_MODE=default` to harden further.
+- **Access and pairing are managed by the owner only**, in the state directory, never via chat.
 
 ---
 

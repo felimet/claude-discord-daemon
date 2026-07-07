@@ -6,7 +6,7 @@
 
 `Windows 11` · `Bun` · `discord.js v14` · `MIT`
 
-Distributed both as an **npm package** (`bunx claude-discord-daemon` / `cdd`) and as a **Claude Code plugin** (the `/discord` command).
+Distributed both as an **npm package** (`bunx claude-discord-daemon` / `cdd`) and as a **Claude Code plugin** (the `/claude-discord-daemon:discord` command).
 
 ---
 
@@ -78,13 +78,13 @@ Bin names are `claude-discord-daemon` and `cdd` (identical).
 /plugin install claude-discord-daemon
 ```
 
-Then drive the same daemon with the `/discord` command:
+Claude Code namespaces plugin commands with the plugin name, so the command is `/claude-discord-daemon:discord`. Drive the same daemon with it:
 
 ```
-/discord up | down | status | logs
+/claude-discord-daemon:discord up | down | status | logs
 ```
 
-`/discord` runs the same `cdd` CLI under the hood (falling back to `bunx claude-discord-daemon` when `cdd` is not on `PATH`).
+It runs the same `cdd` CLI under the hood (falling back to `bunx claude-discord-daemon` when `cdd` is not on `PATH`).
 
 ---
 

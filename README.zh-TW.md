@@ -6,7 +6,7 @@
 
 `Windows 11` · `Bun` · `discord.js v14` · `MIT`
 
-同時以 **npm 套件**（`bunx claude-discord-daemon` / `cdd`）與 **Claude Code plugin**（`/discord` 指令）兩種形式散布。
+同時以 **npm 套件**（`bunx claude-discord-daemon` / `cdd`）與 **Claude Code plugin**（`/claude-discord-daemon:discord` 指令）兩種形式散布。
 
 ---
 
@@ -78,13 +78,13 @@ bin 名稱為 `claude-discord-daemon` 與 `cdd`（兩者相同）。
 /plugin install claude-discord-daemon
 ```
 
-之後用 `/discord` 指令驅動同一個 daemon：
+Claude Code 會為 plugin 指令加上插件名前綴,所以實際指令是 `/claude-discord-daemon:discord`。用它驅動同一個 daemon：
 
 ```
-/discord up | down | status | logs
+/claude-discord-daemon:discord up | down | status | logs
 ```
 
-`/discord` 底層呼叫同一組 `cdd` CLI（`cdd` 不在 `PATH` 時退回 `bunx claude-discord-daemon`）。
+它底層呼叫同一組 `cdd` CLI（`cdd` 不在 `PATH` 時退回 `bunx claude-discord-daemon`）。
 
 ---
 

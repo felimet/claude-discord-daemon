@@ -36,7 +36,9 @@ The official Discord channel plugin binds the Discord gateway to an MCP stdio pi
 
 ## Simple test demonstration
 
-![Demo](./vidoes/demo.mp4)
+<video src="https://github.com/felimet/claude-discord-daemon/raw/main/videos/demo.mp4" controls width="720"></video>
+
+[Download demo.mp4](./videos/demo.mp4)
 
 ---
 

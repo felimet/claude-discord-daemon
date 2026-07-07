@@ -1,0 +1,18 @@
+{
+  "name": "claude-discord-daemon",
+  "owner": {
+    "name": "felimet"
+  },
+  "metadata": {
+    "description": "Single-plugin marketplace hosting the claude-discord-daemon Discord bridge.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "claude-discord-daemon",
+      "source": "./",
+      "description": "24/7 headless Discord bridge for Claude Code: DM the bot, each allowlisted message spawns a fresh claude -p and streams the reply back with a live named-tool status card, rich embeds/buttons, 50MB attachments, and a Discord permission relay.",
+      "version": "0.1.0"
+    }
+  ]
+}

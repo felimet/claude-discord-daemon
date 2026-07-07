@@ -1,0 +1,29 @@
+# The published set is pinned by package.json "files"; this excludes runtime
+# state and dev cruft in case that allowlist is ever loosened.
+
+# runtime state / logs / attachments
+logs/
+outbox/
+inbox/
+bot.log
+sessions.json
+*.log
+
+# secrets / env
+.env
+.env.*
+
+# workspace-local Claude Code config (not part of the distributed package)
+.claude/
+
+# knowledge-graph index
+graphify-out/
+
+# deps (npm excludes these anyway)
+node_modules/
+
+# OS / editor junk
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/

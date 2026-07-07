@@ -1,0 +1,60 @@
+{
+  "name": "claude-discord-daemon",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "24/7 headless Discord bridge for Claude Code on Windows. Each allowlisted DM spawns a fresh claude -p with your full global config; live named-tool status card, rich embeds/choice buttons, 50MB attachments, Discord permission relay, and a logon-task daemon that survives terminal close, crashes, and reboots.",
+  "keywords": [
+    "discord",
+    "claude-code",
+    "claude",
+    "bot",
+    "mcp",
+    "bridge",
+    "daemon"
+  ],
+  "license": "MIT",
+  "author": "Jia-Ming Zhou (felimet)",
+  "homepage": "https://github.com/felimet/claude-discord-daemon#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felimet/claude-discord-daemon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/felimet/claude-discord-daemon/issues"
+  },
+  "bin": {
+    "claude-discord-daemon": "./cli.ts",
+    "cdd": "./cli.ts"
+  },
+  "files": [
+    "bot.ts",
+    "cli.ts",
+    "perm-mcp.ts",
+    "supervise.cmd",
+    "launch.vbs",
+    "install-service.ps1",
+    "commands/",
+    "skills/",
+    ".claude-plugin/",
+    "README.md",
+    "README.zh-TW.md",
+    "LICENSE"
+  ],
+  "os": [
+    "win32"
+  ],
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "scripts": {
+    "up": "bun cli.ts up",
+    "down": "bun cli.ts down",
+    "status": "bun cli.ts status",
+    "start": "bun bot.ts",
+    "selftest": "bun bot.ts --selftest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "discord.js": "^14.14.0"
+  }
+}

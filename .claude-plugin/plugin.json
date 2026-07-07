@@ -1,0 +1,20 @@
+{
+  "name": "claude-discord-daemon",
+  "version": "0.1.0",
+  "description": "24/7 headless Discord bridge for Claude Code on Windows. DM the bot; each allowlisted message spawns a fresh claude -p with your full global config and streams the reply back with a live named-tool status card, rich embeds/buttons, 50MB attachments, and a Discord permission relay.",
+  "author": {
+    "name": "felimet"
+  },
+  "homepage": "https://github.com/felimet/claude-discord-daemon",
+  "repository": "https://github.com/felimet/claude-discord-daemon",
+  "license": "MIT",
+  "keywords": [
+    "discord",
+    "claude-code",
+    "claude",
+    "bot",
+    "mcp",
+    "bridge",
+    "daemon"
+  ]
+}

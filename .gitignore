@@ -1,0 +1,35 @@
+# deps
+node_modules/
+
+# runtime state / logs / attachments (never commit)
+logs/
+outbox/
+inbox/
+bot.log
+sessions.json
+*.log
+
+# secrets / env
+.env
+.env.*
+!.env.example
+
+# knowledge-graph index (large binary)
+graphify-out/
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# editor junk
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+*.asv
+*.m~
+
+# NOTE: bun.lock is intentionally committed (reproducible installs)
+
+# workspace-local Claude Code config (not part of the package)
+.claude/

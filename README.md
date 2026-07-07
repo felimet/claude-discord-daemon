@@ -75,7 +75,7 @@ Bin names are `claude-discord-daemon` and `cdd` (identical).
 
 ```
 /plugin marketplace add felimet/claude-discord-daemon
-/plugin install claude-discord-daemon@claude-discord-daemon
+/plugin install claude-discord-daemon
 ```
 
 Then drive the same daemon with the `/discord` command:

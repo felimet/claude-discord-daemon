@@ -75,7 +75,7 @@ bin 名稱為 `claude-discord-daemon` 與 `cdd`（兩者相同）。
 
 ```
 /plugin marketplace add felimet/claude-discord-daemon
-/plugin install claude-discord-daemon
+/plugin install claude-discord-daemon@claude-discord-daemon
 ```
 
 之後用 `/discord` 指令驅動同一個 daemon：

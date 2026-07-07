@@ -12,7 +12,7 @@ Distributed both as an **npm package** (`bunx claude-discord-daemon` / `cdd`) an
 
 ## What it is / why it exists
 
-The official Discord channel plugin binds the Discord gateway to an MCP stdio pipe that dies the moment the terminal closes, so the bot is only online while you have Claude Code open. `claude-discord-daemon` runs `bot.ts` as its own long-lived process that holds the gateway connection itself. Each DM from an allowlisted user spawns a headless `claude -p` loaded with your full global config (MCP servers, plugins, `CLAUDE.md`), and that process posts the reply back. A Windows logon-task daemon keeps it alive across terminal close, crashes, and reboots.
+The official Discord channel plugin binds the Discord gateway to an MCP stdio pipe that dies the moment the terminal closes, so the bot is only online while you have Claude Code open (security considerations). `claude-discord-daemon` runs `bot.ts` as its own long-lived process that holds the gateway connection itself. Each DM from an allowlisted user spawns a headless `claude -p` loaded with your full global config (MCP servers, plugins, `CLAUDE.md`), and that process posts the reply back. A Windows logon-task daemon keeps it alive across terminal close, crashes, and reboots.
 
 ---
 
@@ -31,6 +31,12 @@ The official Discord channel plugin binds the Discord gateway to an MCP stdio pi
 - **Per-chat session continuity.** Each chat's session UUID is stored in `sessions.json` and later messages `--resume` it, so context carries across DMs.
 - **24/7 Windows daemon.** An `AtLogOn` scheduled task (`ClaudeDiscordBridge`) plus `launch.vbs` (detached) + `supervise.cmd` (restart on crash) + a single-instance loopback lock keeps the bridge running across terminal close, crashes, and reboots.
 - **Portable - no hardcoded paths.** The working directory defaults to the engine directory and every path is overridable via env vars.
+
+---
+
+## Simple test demonstration
+
+![Demo](./vidoes/demo.mp4)
 
 ---
 

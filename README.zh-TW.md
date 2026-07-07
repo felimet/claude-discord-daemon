@@ -12,7 +12,7 @@
 
 ## 這是什麼 / 為何存在
 
-官方 Discord channel plugin 把 Discord gateway 綁在一條 MCP stdio pipe 上，終端機一關 pipe 就死，所以 bot 只在你開著 Claude Code 時上線。`claude-discord-daemon` 讓 `bot.ts` 以自己的長駐行程運行，由它自己持有 gateway 連線。每則允許清單內使用者的 DM 都 spawn 一個載入你完整全域設定（MCP servers、plugins、`CLAUDE.md`）的 headless `claude -p`，並由該行程把回覆貼回。Windows 登入自起排程任務讓它撐過關終端、崩潰、重開機。
+官方 Discord channel plugin 把 Discord gateway 綁在一條 MCP stdio pipe 上，終端機一關 pipe 就死，所以 bot 只在你開著 Claude Code 時上線（安全性考量）。`claude-discord-daemon` 讓 `bot.ts` 以自己的長駐行程運行，由它自己持有 gateway 連線。每則允許清單內使用者的 DM 都 spawn 一個載入你完整全域設定（MCP servers、plugins、`CLAUDE.md`）的 headless `claude -p`，並由該行程把回覆貼回。Windows 登入自起排程任務讓它撐過關終端、崩潰、重開機。
 
 ---
 
@@ -34,6 +34,11 @@
 
 ---
 
+## 簡單測試展示
+
+![Demo](./videos/demo.mp4)
+
+---
 ## 需求
 
 | 項目 | 說明 |

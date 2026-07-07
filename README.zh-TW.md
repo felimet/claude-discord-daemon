@@ -36,9 +36,9 @@
 
 ## 簡單測試展示
 
-<video src="https://github.com/felimet/claude-discord-daemon/raw/main/videos/demo.mp4" controls width="720"></video>
+![Demo](./videos/demo.gif)
 
-[下載 demo.mp4](./videos/demo.mp4)
+[完整畫質 demo.mp4](./videos/demo.mp4)
 
 ---
 ## 需求
